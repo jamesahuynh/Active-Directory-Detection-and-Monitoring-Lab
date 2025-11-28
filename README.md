@@ -1,1 +1,1 @@
-# Active-Directory-Detection-and-Monitoring-Lab
+# Active Directory Detection and Monitoring Lab
