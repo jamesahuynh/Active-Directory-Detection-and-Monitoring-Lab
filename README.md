@@ -27,3 +27,28 @@ Refer to Figure 1 for the logical diagram of the Active Directory Detection and 
 <img width="627" height="671" alt="image" src="https://github.com/user-attachments/assets/65e2414e-e199-471a-b740-95d3f44dce8e" />
 
 Figure 1. Active Directory Detection and Monitoring Lab Logical Diagram
+
+### 2. Install Virtual Machines
+VirtualBox was used to host the virtual machines used in the lab. The first virtual machine spun up was the Windows 10 target machine. Refer to Figure 2 for the configuration of the new Windows 10 virtual machine in VirtualBox. Windows 10 Pro was installed on the virtual machine.
+
+<img width="1117" height="708" alt="image" src="https://github.com/user-attachments/assets/f4d69bdc-9e78-4058-a5c2-263a5c00a178" />
+
+Figure 2. Windows 10 Target Machine Configuration
+
+The second virtual virtual machine spun up was the Kali Linux attacker machine. A pre-built Kali Linux virtual machine was used, which can be downloaded from [kali.org](https://www.kali.org/get-kali/#kali-virtual-machines). Refer to Figure 3 for the configuration of the pre-built Kali Linux virtual machine in VirtualBox.
+
+<img width="1210" height="895" alt="image" src="https://github.com/user-attachments/assets/8f98d4c3-0fc8-4295-bb5a-8007041ffd5f" />
+
+Figure 3. Kali Linux Virtual Machine Configuration
+
+The third virtual machine spun up was Windows Server 2022. Refer to Figure 4 for the configuration of the new Windows Server 2022 virtual machine in VirtualBox. Windows Server 2022 Standard Evaluation (Desktop Experience) was installed on the virtual machine.
+
+<img width="1210" height="700" alt="image" src="https://github.com/user-attachments/assets/32400e4d-cb7c-4623-a808-33439f672a3b" />
+
+Figure 4. Windows Server 2022 Virtual Machine Configuration
+
+The fourth and final virtual machine spun up was an Ubuntu server that will host the Splunk server. Refer to Figure 5 for the configuration of the new Ubuntu server virtual machine in VirtualBox.
+
+<img width="1210" height="711" alt="image" src="https://github.com/user-attachments/assets/bbf9ee06-d8fd-4a1c-bee9-1142d4e03c69" />
+
+Figure 5. Ubuntu Server Virtual Machine Configuration
