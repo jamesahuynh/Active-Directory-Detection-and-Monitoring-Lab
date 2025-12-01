@@ -22,13 +22,13 @@ The Active Directory Detection and Monitoring Lab aimed to establish a controlle
 
 ## Steps
 ### 1. Creating a Logical Diagram
-Refer to Figure 1 for the logical diagram of the Active Directory Detection and Monitoring Lab. The diagram was created using Draw.io. The lab consists of several components: a Splunk server; an Active Directory server with Splunk Universal Forwarder and Sysmon installed; a Windows 10 target machine with Splunk Universal Forwarder, Sysmon, and Atomic Red Team; a Kali Linux attacker machine; a switch; and a router.
+Refer to Figure 1 for the logical diagram of the Active Directory Detection and Monitoring Lab. The diagram was created using Draw.io. The lab consists of several components: a Splunk server; an Active Directory server with Splunk Universal Forwarder and Sysmon installed; a Windows 10 target machine with Splunk Universal Forwarder, Sysmon, and Atomic Red Team installed; a Kali Linux attacker machine; a switch; and a router.
 
 <img width="627" height="671" alt="image" src="https://github.com/user-attachments/assets/65e2414e-e199-471a-b740-95d3f44dce8e" />
 
 Figure 1. Active Directory Detection and Monitoring Lab Logical Diagram
 
-### 2. Install Virtual Machines
+### 2. Installing Virtual Machines
 VirtualBox was used to host the virtual machines used in the lab. The first virtual machine spun up was the Windows 10 target machine. Refer to Figure 2 for the configuration of the new Windows 10 virtual machine in VirtualBox. Windows 10 Pro was installed on the virtual machine.
 
 <img width="1117" height="708" alt="image" src="https://github.com/user-attachments/assets/f4d69bdc-9e78-4058-a5c2-263a5c00a178" />
