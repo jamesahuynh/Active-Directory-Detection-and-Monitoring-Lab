@@ -15,12 +15,12 @@ The Active Directory Detection and Monitoring Lab aimed to establish a controlle
 - Active Directory as an environment to manage resources, such as users, computers, and groups
 - Splunk Universal Forwarder to collect and forward telemetry to the Splunk server for indexing and searching
 - Sysmon to generate telemetry, which was forwarded to the Splunk server via Splunk Universal Forwarder
-- Kali Linux to perform a brute force attack
+- Kali Linux to perform a password brute force attack
 - Atomic Red Team to simulate adversarial activity in the lab environment
 
 ## Steps
 ### 1. Creating a Logical Diagram
-Refer to Figure 1 for the logical diagram of the Active Directory Detection and Monitoring Lab. The diagram was created using Draw.io. The lab consists of several components: a Splunk server; an Active Directory server with Splunk Universal Forwarder and Sysmon installed; a Windows 10 target machine with Splunk Universal Forwarder, Sysmon, and Atomic Red Team installed; a Kali Linux attacker machine; a switch; and a router.
+Refer to Figure 1 for the logical diagram of the Active Directory Detection and Monitoring Lab. The diagram was created using Draw.io. The lab consisted of several components: a Splunk server; an Active Directory server with Splunk Universal Forwarder and Sysmon installed; a Windows 10 target machine with Splunk Universal Forwarder, Sysmon, and Atomic Red Team installed; a Kali Linux attacker machine; a switch; and a router.
 
 <img width="627" height="671" alt="image" src="https://github.com/user-attachments/assets/65e2414e-e199-471a-b740-95d3f44dce8e" />
 
@@ -45,7 +45,7 @@ The third virtual machine created was Windows Server 2022. Refer to Figure 4 for
 
 Figure 4. Windows Server 2022 Virtual Machine Configuration
 
-The fourth and final virtual machine created was an Ubuntu server that will host the Splunk server. Refer to Figure 5 for the configuration of the new Ubuntu server virtual machine in VirtualBox.
+The fourth and final virtual machine created was an Ubuntu server that hosted the Splunk server. Refer to Figure 5 for the configuration of the new Ubuntu server virtual machine in VirtualBox.
 
 <img width="1210" height="711" alt="image" src="https://github.com/user-attachments/assets/bbf9ee06-d8fd-4a1c-bee9-1142d4e03c69" />
 
@@ -64,7 +64,7 @@ Each of the virtual machines in the lab were attached to the newly created NAT n
 
 Figure 7. Splunk Server
 
-The Splunk server was assigned an IP address of 192.168.10.4. From the logical diagram in Figure 1, the Splunk server was assigned a static IP address of 192.168.10.10. To set a static IP address of 192.168.10.10 on the Splunk server, the 'sudo nano /etc/netplan/50-cloud-init.yaml' command was run. Within the network configuration, the dhcp4 setting was set to 'no'. In addition, an entry was created to assign a static IP address of 192.168.10.10 along with entries for the nameservers and routes. Refer to Figure 8 for the updated network configuration for the Splunk server. To apply the updated network configuration, the 'sudo netplan apply' command was run on the Splunk server.
+The Splunk server was assigned an IP address of 192.168.10.4. From the logical diagram in Figure 1, the Splunk server was to be assigned a static IP address of 192.168.10.10. To set a static IP address of 192.168.10.10 on the Splunk server, the 'sudo nano /etc/netplan/50-cloud-init.yaml' command was run. Within the network configuration, the dhcp4 setting was set to 'no'. In addition, an entry was created to assign a static IP address of 192.168.10.10 along with entries for the nameservers and routes. Refer to Figure 8 for the updated network configuration for the Splunk server. To apply the updated network configuration, the 'sudo netplan apply' command was run on the Splunk server.
 
 <img width="854" height="271" alt="image" src="https://github.com/user-attachments/assets/fdb87595-f97e-4784-ba07-8ac4dfdc2487" />
 
@@ -101,18 +101,18 @@ Splunk Universal Forwarder and Sysmon were installed on the Windows Server 2022 
 ### 4. Installing and Configuring Active Directory
 In the Server Manager on the Windows Server 2022 virtual machine, the 'Manage' button was clicked to navigate to 'Add Roles and Features'. 'Role-based or feature-based installation' was selected as the installation type. The 'ADDC01' Windows Server 2022 virtual machine with an IP address of 192.168.10.10 was selected as the destination server. Active Directory Domain Services was selected to be installed onto the selected server. Once the installation was completed, the 'ADDC01' server was promoted to a domain controller. In the Active Directory Domain Services Configuration Wizard, 'Add a new forest' was selected as the deployment operation. The root domain name was set to 'myaddomain.local'. The rest of the configuration wizard was completed using the default options. After the installation was completed, the server was automatically rebooted. 
 
-In the Server Manager, the 'Tools' button was clicked to navigate to 'Active Directory Users and Computers'. A new organizational unit called 'IT' was created. Within the organizational unit, a new user named 'Jenny Smith' with a logon name of 'jsmith' was created. Another organizational unit called 'HR' was created with a new user named 'Terry Smith' with logon name 'tsmith'. 
+In the Server Manager, the 'Tools' button was clicked to navigate to 'Active Directory Users and Computers'. A new organizational unit called 'IT' was created. Within the organizational unit, a new user named 'Jenny Smith' with a logon name of 'jsmith' was created. Another organizational unit called 'HR' was created with a new user named 'Terry Smith' with a logon name of 'tsmith'. 
 
 On the Windows 10 target machine, the preferred DNS server was set to the AD domain controller at the IP address 192.168.10.7. The Windows 10 target machine was joined to the 'myaddomain.local' domain using the Administrator account of the AD domain controller. Once the Windows 10 target machine was rebooted, jsmith's account was used to log in. 
 
 ### 5. Performing a Brute Force Attack
-On the Kali Linux attacker machine, a static IP address of 192.168.10.250 was assigned. A new directory called 'ad-project' was created on the desktop by running the command 'mkdir ad-project'. The tool Crowbar was installed by running the command 'sudo apt-get install -y crowbar'. Crowbar will be used to perform brute force attacks on the AD domain controller and Windows 10 target machine. The popular wordlist that comes installed with Kali Linux called rockyou.txt will be used for the brute force attacks. The rockyou.txt file was copied into the 'ad-project' folder on the desktop. A new file called passwords.txt was created to only capture the first 20 lines of the rockyou.txt file. This was performed by running the command 'head -n 20 rockyou.txt > passwords.txt'. Refer to Figure 13 for the contents of the passwords.txt file. The passwords of the users in the 'myaddomain.local' domain were added to the passwords.txt file.
+On the Kali Linux attacker machine, a static IP address of 192.168.10.250 was assigned. A new directory called 'ad-project' was created on the desktop by running the command 'mkdir ad-project'. The tool Crowbar was installed by running the command 'sudo apt-get install -y crowbar'. Crowbar was used to perform brute force attacks on the AD domain controller and Windows 10 target machine. The popular wordlist that comes installed with Kali Linux called rockyou.txt was used for the brute force attacks. The rockyou.txt file was copied into the 'ad-project' folder on the desktop. A new file called passwords.txt was created to only capture the first 20 lines of the rockyou.txt file. This was performed by running the command 'head -n 20 rockyou.txt > passwords.txt'. Refer to Figure 13 for the contents of the passwords.txt file. The passwords of the users in the 'myaddomain.local' domain were added to the passwords.txt file.
 
 <img width="345" height="416" alt="image" src="https://github.com/user-attachments/assets/8acdeb27-d6b2-4ad9-b078-4456e984af2c" />
 
 Figure 13. passwords.txt 
 
-On the Windows 10 target machine, Remote Desktop was enabled to allow remote connections to the machine. The accounts 'jsmith' and 'tsmith' were added as Remote Desktop users. On the Kali Linux attacker machine, the brute force attack on tsmith's account was initiated by running the command 'crowbar -b rdp -u tsmith -C passwords.txt -s 192.168.10.100/32'. Crowbar will try every password listed in the passwords.txt file. Refer to Figure 14 for the output from Crowbar.
+On the Windows 10 target machine, Remote Desktop was enabled to allow remote connections to the machine. The accounts 'jsmith' and 'tsmith' were added as Remote Desktop users. On the Kali Linux attacker machine, the brute force attack on tsmith's account was initiated by running the command 'crowbar -b rdp -u tsmith -C passwords.txt -s 192.168.10.100/32'. Crowbar tried every password listed in the passwords.txt file. Refer to Figure 14 for the output from Crowbar.
 
 <img width="526" height="44" alt="image" src="https://github.com/user-attachments/assets/b86d7061-5330-444d-9122-52a30244d404" />
 
@@ -124,7 +124,7 @@ The telemetry generated from the brute force attack on tsmith's account was anal
 
 Figure 15. EventCode Field
 
-An event code of 4625 indicates that an account failed to log on. There is a single event with an event code of 4624, indicating that an account was successfully logged on. 
+An event code of 4625 indicated that an account failed to log on. There was a single event with an event code of 4624 that indicated an account was successfully logged on. 
 
 ### 6. Installing and Running Atomic Red Team
-On the Windows 10 target machine, PowerShell was run as Administrator. The 'Set-ExecutionPolicy Bypass CurrentUser' command was run. An exclusion for the entire C:\ drive was performed to exclude the files from Atomic Red Team from Windows Defender. To install Atomic Red Team, the command 'IEX (IWR 'https://raw.githubusercontent.com/redcanaryco/invoke-atomicredteam/master/install-atomicredteam.ps1' -UseBasicParsing); Install-AtomicRedTeam' was run. The command 'Invoke-AtomicTest T1136.001' was run to generate telemetry based on creating a local account. A new user with the username 'NewLocalUser' was created. In Splunk, a new search with the query 'index=endpoint NewLocalUser' was performed. No events were available, which indicates that Splunk is blind to this activity. If an attacker compromised the system with the current configuration and created a local account, Splunk would not be able to detect that activity. 
+On the Windows 10 target machine, PowerShell was run as Administrator. The 'Set-ExecutionPolicy Bypass CurrentUser' command was run. An exclusion for the entire C:\ drive was performed to exclude the files from Atomic Red Team from Windows Defender. To install Atomic Red Team, the command 'IEX (IWR 'https://raw.githubusercontent.com/redcanaryco/invoke-atomicredteam/master/install-atomicredteam.ps1' -UseBasicParsing); Install-AtomicRedTeam' was run. The command 'Invoke-AtomicTest T1136.001' was run to generate telemetry based on creating a local account. A new user with the username 'NewLocalUser' was created. In Splunk, a new search with the query 'index=endpoint NewLocalUser' was performed. No events were available, which indicated that Splunk was blind to this activity. If an attacker compromised the system with the current configuration and created a local account, Splunk would not be able to detect that activity.
