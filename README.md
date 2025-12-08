@@ -126,5 +126,5 @@ Figure 15. EventCode Field
 
 An event code of 4625 indicates that an account failed to log on. There is a single event with an event code of 4624, indicating that an account was successfully logged on. 
 
-### 6. Installing and Configuring Atomic Red Team
+### 6. Installing and Running Atomic Red Team
 On the Windows 10 target machine, PowerShell was run as Administrator. The 'Set-ExecutionPolicy Bypass CurrentUser' command was run. An exclusion for the entire C:\ drive was performed to exclude the files from Atomic Red Team from Windows Defender. To install Atomic Red Team, the command 'IEX (IWR 'https://raw.githubusercontent.com/redcanaryco/invoke-atomicredteam/master/install-atomicredteam.ps1' -UseBasicParsing); Install-AtomicRedTeam' was run. The command 'Invoke-AtomicTest T1136.001' was run to generate telemetry based on creating a local account. A new user with the username 'NewLocalUser' was created. In Splunk, a new search with the query 'index=endpoint NewLocalUser' was performed. No events were available, which indicates that Splunk is blind to this activity. If an attacker compromised the system with the current configuration and created a local account, Splunk would not be able to detect that activity. 
